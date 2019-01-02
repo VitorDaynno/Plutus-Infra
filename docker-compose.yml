@@ -1,0 +1,26 @@
+version: '3'
+networks:
+  db:
+  services:
+services:
+  mongodb:
+    image: mongo:latest
+    environment: 
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/mongodb/plutus:/data/db
+    networks:
+      - db
+  plutus-service:
+    restart: always
+    build: ./plutus-service
+    image: plutus-service
+    environment:
+      - DB=mongodb
+      - PORT=5000
+    networks:
+      - db
+      - services
+    ports:
+      - 5000:5000

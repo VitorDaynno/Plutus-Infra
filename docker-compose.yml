@@ -27,7 +27,7 @@ services:
       - web
     ports:
       - 5000:5000
-  frontend:
+  plutus-app:
     build: ./plutus-app
     restart: unless-stopped
     networks:

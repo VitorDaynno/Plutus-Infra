@@ -9,8 +9,6 @@ RUN git clone https://github.com/VitorDaynno/Plutus-App.git /app && \
 
 RUN npm run build
 
-FROM nginx
+FROM nginx:1.15-alpine
 
 COPY --from=0 /app/build /usr/share/nginx/html
-
-CMD ["nginx", "-g", "daemon off;"]
